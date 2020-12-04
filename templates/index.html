@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf-8">
+        var socket = io();
+        socket.on('connect', function() {
+            socket.emit('connection', {data: 'I\'m connected!'});
+        });
+
+        socket.on('solution', function(data) {
+            var para = document.createElement("p");
+            var node = document.createTextNode("The solution is: " + data);
+            para.appendChild(node);
+            var element = document.getElementById("div1");
+            element.appendChild(para);
+        })
+    </script>
+
+    <h1>CS655 GENI Mini Project</h1>
+    <h2>Distributed MD5 Hash Cracker</h2>
+
+    <h3>Please enter the MD5 hash to be cracked below:</h3>
+
+    <input type="text" id="hash" value="Input hash here">
+
+    <h3>Please enter the number of worker nodes (1-5)</h3>
+    <label for="workers">Number of workers:</label>
+    <select name="workers" id="workers">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+
+    <button onclick="processHash();">Submit</button>
+    <div id="div1"></div>
+
+    <script>
+        function processHash() {
+            var numWorkers = document.getElementById("workers").value;
+            console.log(numWorkers);
+            var hash = document.getElementById("hash").value;
+            console.log(hash);
+
+            // create processing hash... element
+            var para = document.createElement("p");
+            var node = document.createTextNode("Processing hash...");
+            para.appendChild(node);
+            var element = document.getElementById("div1");
+            element.appendChild(para)
+
+            // create websocket to send data
+            socket.emit('submitted hash', {data: hash, numWorkers: numWorkers});
+        }
+    </script>
+
+</body>
+</html>
