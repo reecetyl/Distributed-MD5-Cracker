@@ -2,11 +2,11 @@
 
 sudo apt update
 
-sudo apt install python-pip
+sudo apt install python3-pip
 
-sudo pip install hashlib
-sudo pip install itertools
-sudo pip install socket
-sudo pip install json
+sudo pip3 install hashlib
+sudo pip3 install itertools
+sudo pip3 install socket
+sudo pip3 install json
 
 sudo python3 generate_dictionary.py 
