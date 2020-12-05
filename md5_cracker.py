@@ -24,7 +24,7 @@ def crack_md5(solution, start, stop, path_to_dict_file):
         currentLine += 1
         m.update(line.encode())
         guess = m.hexdigest()
-        print(guess)
+        print("Guessing: " + line)
 
         if guess == solution:
             return line
@@ -40,12 +40,12 @@ def connect_to_server():
     client_socket.connect((host, port))
 
     message = "ready at " + host
-    print("sending message")
+    #print("sending message")
     client_socket.send(message.encode())
     data = client_socket.recv(1024).decode()
 
-    print("Received from server: " + data)
-    print(type(data))
+    #print("Received from server: " + data)
+    #print(type(data))
     data = data.split()
     hash = data[0]
     start = int(data[1])
@@ -56,7 +56,11 @@ def connect_to_server():
     if answer == -1:
         answer = "failure"
 
-    client_socket.send(("Success! " + answer).encode())
+    client_socket.send((answer).encode())
 
+    return answer
 
-connect_to_server()
+while True:
+    ans = connect_to_server()
+    if ans != "failure":
+        break
