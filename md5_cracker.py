@@ -33,8 +33,8 @@ def crack_md5(solution, start, stop, path_to_dict_file):
 
 def connect_to_server():
 
-    HOST = socket.gethostname()
-    port = 8080
+    HOST = '192.12.245.165'
+    PORT = 5001
 
     client_socket = socket.socket()
     client_socket.connect((HOST, PORT))

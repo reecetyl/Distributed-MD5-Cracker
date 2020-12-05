@@ -9,4 +9,4 @@ sudo pip3 install itertools
 sudo pip3 install socket
 sudo pip3 install json
 
-sudo python3 generate_dictionary.py 
+sudo python3 generate_dictionary.py &

@@ -7,8 +7,9 @@ import threading
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO
 
-HOSTNAME = '0.0.0.0'
-PORT = 8080
+SERVER_HOSTNAME = '192.12.245.165'
+SERVER_PORT = 5000
+SOCKET_PORT = 5001
 
 app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
@@ -20,7 +21,7 @@ clients = []
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-server.bind((HOSTNAME, PORT))
+server.bind((SERVER_HOSTNAME, SOCKET_PORT))
 server.listen(5)
 
 @app.route('/')
@@ -84,4 +85,4 @@ class ClientThread(threading.Thread):
 
         
 if __name__ == '__main__':
-    socketio.run(app)
+    socketio.run(app, host=SERVER_HOSTNAME, port=SERVER_PORT)
