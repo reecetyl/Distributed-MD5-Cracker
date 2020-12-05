@@ -6,8 +6,11 @@ def generate_strings(length=5):
     chars = string.ascii_letters
     return ["".join(item) for item in itertools.product(chars, repeat=length)]
 
+print("Generating dictionary...")
 full_dict = generate_strings()
 with open('dictionary.txt', 'w') as filehandle:
     for listitem in full_dict:
         filehandle.write('%s\n' % listitem)
+
+print("done")
 

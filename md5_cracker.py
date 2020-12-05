@@ -33,13 +33,13 @@ def crack_md5(solution, start, stop, path_to_dict_file):
 
 def connect_to_server():
 
-    host = socket.gethostname()
+    HOST = socket.gethostname()
     port = 8080
 
     client_socket = socket.socket()
-    client_socket.connect((host, port))
+    client_socket.connect((HOST, PORT))
 
-    message = "ready at " + host
+    message = "ready at " + str(HOST)
     #print("sending message")
     client_socket.send(message.encode())
     data = client_socket.recv(1024).decode()

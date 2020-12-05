@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <body>
-
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/style.css')}}">
     <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
     <script type="text/javascript" charset="utf-8">
         var socket = io();
@@ -17,43 +17,36 @@
             element.appendChild(para);
         })
     </script>
+    <div class="center">
+        <h1 class="cs655">CS655 GENI Mini Project</h1>
+        <div class="title">
+            <h2>Distributed MD5 Hash Cracker</h2>
+            <p>By Tyler Reece </p>
+        </div>
+        
+        <h3>Please enter the MD5 hash (a-z, A-Z) to be cracked below:</h3>
 
-    <h1>CS655 GENI Mini Project</h1>
-    <h2>Distributed MD5 Hash Cracker</h2>
+        <input type="text" id="hash" value="">
 
-    <h3>Please enter the MD5 hash to be cracked below:</h3>
-
-    <input type="text" id="hash" value="e01616bc150478227b55419b0e98c8f6">
-
-    <h3>Please enter the number of worker nodes (1-5)</h3>
-    <label for="workers">Number of workers:</label>
-    <select name="workers" id="workers">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-    </select>
-
-    <button onclick="processHash();">Submit</button>
-    <div id="div1"></div>
-
+        <button onclick="processHash();">Submit</button>
+        <div id="div1"></div>
+    </div>
     <script>
         function processHash() {
-            var numWorkers = document.getElementById("workers").value;
-            console.log(numWorkers);
+            //console.log(numWorkers);
             var hash = document.getElementById("hash").value;
-            console.log(hash);
+            //console.log(hash);
 
             // create processing hash... element
             var para = document.createElement("p");
             var node = document.createTextNode("Processing hash...");
             para.appendChild(node);
             var element = document.getElementById("div1");
-            element.appendChild(para)
+            element.appendChild(para);
+            console.log("HERE");
 
             // create websocket to send data
-            socket.emit('submitted hash', {data: hash, numWorkers: numWorkers});
+            socket.emit('submitted hash', {data: hash, numWorkers: 4});
         }
     </script>
 

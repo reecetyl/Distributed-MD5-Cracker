@@ -2,13 +2,11 @@
 
 sudo apt update
 
-sudo pip3 install hashlib
-sudo pip3 install itertools
-sudo pip3 install socket
-sudo pip3 install json
+sudo apt install python-pip
 
-sudo wget https://github.com/reecetyl/Distributed-MD5-Cracker/blob/master/md5_cracker.py
-
-sudo wget https://github.com/reecetyl/Distributed-MD5-Cracker/blob/master/generate_dictionary.py
+sudo pip install hashlib
+sudo pip install itertools
+sudo pip install socket
+sudo pip install json
 
 sudo python3 generate_dictionary.py 
